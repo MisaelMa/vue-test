@@ -1,3 +1,17 @@
+# uso
+
+
+```
+pnpm i
+
+cd app/blog
+
+npm run dev
+
+npm run test
+```
+
+
 # Turborepo starter
 
 This is an official pnpm starter turborepo.
