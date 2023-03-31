@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest",
+    "test": "vitest --dom",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
@@ -19,10 +19,13 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",
+    "@vitest/coverage-c8": "^0.29.8",
+    "@vue/test-utils": "^2.3.2",
     "autoprefixer": "^10.4.14",
     "eslint": "^8.37.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-vue": "^9.10.0",
+    "happy-dom": "^8.9.0",
     "postcss": "^8.4.21",
     "standard": "^17.0.0",
     "tailwindcss": "^3.2.7",
