@@ -9,19 +9,21 @@ const props = defineProps({
 
 const vTrimText = {
   beforeMount: (el,binding) => {
-    const maxLength = parseInt(binding.value);
+    console.log(binding.value);
+    const payload = binding.value
+    const {maxLength, last = '....'} = payload
     const text = el.innerText;
-    el.innerText = text.length > maxLength ? text.slice(0, maxLength) + '...' : text;
+    el.innerText = text.length > maxLength ? text.slice(0, maxLength) + last : text;
   }
 }
 </script>
 <template>
-  <div class="h-48 max-w-sm p-1 overflow-hidden rounded shadow-lg border-neutral-800 ">
+  <div class="h-56 max-w-sm p-1 overflow-hidden rounded shadow-lg border-neutral-800 ">
     <div class="px-6 py-4">
-      <div v-trim-text="30" class="mb-2 text-xl font-bold">
+      <div v-trim-text="{maxLength:20,last:''}" class="mb-2 text-xl font-bold">
         {{ title }}
       </div>
-      <p class="text-base text-gray-700">
+      <p v-trim-text="{maxLength:60,}" class="text-base text-gray-700">
         {{ body }}
       </p>
       <p class="text-base text-gray-700">
