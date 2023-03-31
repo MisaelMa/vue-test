@@ -1,7 +1,7 @@
 module.exports = {
-    env: {
-      node: true,
-    },
+  "env": [
+    "jest"
+  ],
     extends: [
         'standard',
       'eslint:recommended',
