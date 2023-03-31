@@ -2,7 +2,7 @@ import UserDetails from '../src/components/UserDetails.vue';
 import { mount } from '@vue/test-utils';
 
 describe('UserDetails', () => {
-  it('renderiza correctamente con los props proporcionados', () => {
+  it('renders correctly with provided props', () => {
     const props = {
       id: 1,
       name: 'Neil',
