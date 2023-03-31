@@ -73,7 +73,6 @@ export default class ApiClient {
       })
       .catch((response) => {
         return Promise.reject(response)
-        console.log(response.status, response.statusText)
         // 3. get error messages, if any
         response.json().then((json: any) => {
           console.log(json)

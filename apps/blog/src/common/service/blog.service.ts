@@ -4,15 +4,26 @@ import { userService } from './user.service';
 
 class BlogService {
     url_path = 'posts'
-    getPost(){
-        return httpClient.get(`${this.url_path}`).then((res)=>res)
+    getPosts(): Promise<Post[]>{
+        return httpClient.get<Post[]>(`${this.url_path}`).then((res)=>res)
     }
 
-    async getPostWithUser(){
-        const posts = await httpClient.get<Post[]>(`${this.url_path}`).then((res)=>res)
-        const users = await Promise.all(posts.map((post)=>  userService.getUser(post.userId)))
-        console.log(users);
-        
+    getPost(id: number): Promise<Post>{
+        return httpClient.get<Post>(`${this.url_path}/${id}`).then((res)=>res)
+    }
+
+   async getPostWithUser(id: number): Promise<Post>{
+        const post = await this.getPost(id);
+        const user = await userService.getUser(post.userId)
+        return {
+            ...post,
+            user
+        }
+    }
+
+    async getPostsWithUser(){
+        const posts = await this.getPosts();
+        const users = await Promise.all(posts.map((post)=>  userService.getUser(post.userId)))   
         return posts.map((post)=>{
             const user = users.find((u)=>u.id===post.userId)
             return {

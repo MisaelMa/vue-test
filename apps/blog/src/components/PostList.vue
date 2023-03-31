@@ -1,4 +1,5 @@
 <script setup>
+import { TrimText as vTrimText} from '../common/directives/TrimText'
 const props = defineProps({
   userId: Number,
   id: Number,
@@ -7,16 +8,7 @@ const props = defineProps({
   user: {},
 });
 
-const vTrimText = {
-  beforeMount: (el, binding) => {
-    console.log(binding.value);
-    const payload = binding.value;
-    const { maxLength, last = "...." } = payload;
-    const text = el.innerText;
-    el.innerText =
-      text.length > maxLength ? text.slice(0, maxLength) + last : text;
-  },
-};
+
 </script>
 <template>
   <div
@@ -25,8 +17,8 @@ const vTrimText = {
     <a :href="`#/post/${id}`">
       <div class="px-6 py-4">
         <div
-          v-trim-text="{ maxLength: 20, last: '' }"
-          class="mb-2 text-xl font-bold"
+          v-trim-text="{ maxLength: 20, last: '...' }"
+          class="mb-2 text-xl font-bold capitalize"
         >
           {{ title }}
         </div>
