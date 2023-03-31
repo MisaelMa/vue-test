@@ -5,7 +5,7 @@ export const TrimText:ObjectDirective = {
       const payload = binding.value;
       const { maxLength, last = "...." } = payload;
       const text = el.innerText;
-      el.innerText =
-        text.length > maxLength ? text.slice(0, maxLength) + last : text;
+      const isMayor = text ? text.length > maxLength : false
+      el.innerText = isMayor ? text.slice(0, maxLength) + last : text ? text : '';
     },
 };
